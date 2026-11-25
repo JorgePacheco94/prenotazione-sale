@@ -27,6 +27,17 @@ class TestSegnalazioni(unittest.TestCase):
         self.assertIsNotNone(identificativo)
         self.assertEqual(len(self.agenda.prenotazioni), 2)
 
+    def test_prenotazione_con_capienza_esatta(self):
+        sala = Sala("R1", "Sala riunioni", 10)
+        self.agenda.aggiungi_sala(sala)
+
+        prenotazione = Prenotazione(
+            "R1", self.martedi, "09:00", "10:00", "Mario Rossi", 10
+        )
+
+        identificativo = self.agenda.prenota(prenotazione, oggi=self.oggi)
+
+        self.assertIsNotNone(identificativo)
 
 if __name__ == "__main__":
     unittest.main()
