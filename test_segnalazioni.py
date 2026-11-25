@@ -1,10 +1,9 @@
-
 """Test per i difetti segnalati dalla segreteria."""
 
 import unittest
 from datetime import date
 
-from prenotazioni import Agenda, Sala, Prenotazione, ConflittoOrario
+from prenotazioni import Agenda, Prenotazione, Sala
 
 
 class TestSegnalazioni(unittest.TestCase):
@@ -15,9 +14,7 @@ class TestSegnalazioni(unittest.TestCase):
         self.martedi = date(2026, 11, 3)
 
     def test_prenotazioni_continue(self):
-        prima = Prenotazione(
-            "A2", self.martedi, "09:00", "10:00", "Mario Rossi", 10
-        )
+        prima = Prenotazione("A2", self.martedi, "09:00", "10:00", "Mario Rossi", 10)
         seconda = Prenotazione(
             "A2", self.martedi, "10:00", "11:00", "Luigi Bianchi", 10
         )
@@ -38,6 +35,7 @@ class TestSegnalazioni(unittest.TestCase):
         identificativo = self.agenda.prenota(prenotazione, oggi=self.oggi)
 
         self.assertIsNotNone(identificativo)
+
 
 if __name__ == "__main__":
     unittest.main()
